@@ -1,0 +1,37 @@
+<?php echo $this->doctype(); ?>
+
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+
+        <!-- Le styles -->
+        <?php
+        echo $this->headLink()
+                ->prependStylesheet($this->basePath() . '/css/style.css')
+        ?>
+
+        <!-- Scripts -->
+
+        <script data-require="angular.js@*" data-semver="1.2.0-rc3-nonmin" src="http://localhost/ZendSkeletonApplication/public/js/angular.js"></script>
+        <script data-require="ng-table@*" data-semver="0.3.0" src="http://localhost/ZendSkeletonApplication/public/js/ng-table.js"></script>
+
+        <link data-require="ng-table@*" data-semver="0.3.0" rel="stylesheet" href="http://localhost/ZendSkeletonApplication/public/css/ng-table.css" />
+        <link data-require="bootstrap-css@*" data-semver="3.0.0" rel="stylesheet" href="http://localhost/ZendSkeletonApplication/public/css/bootstrap.min.css" />
+        <?php
+        echo $this->headScript()
+                ->prependFile($this->basePath() . '/js/script.js')
+
+        ;
+        ?>
+
+    </head> 
+
+    <body ng-app="main">
+
+        <?php echo $this->content; ?>
+        <footer>copyright achraf</footer>
+    </body>
+
+</html>

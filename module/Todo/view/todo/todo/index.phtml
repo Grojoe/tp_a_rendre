@@ -1,0 +1,12 @@
+
+<div ng-controller="DemoCtrl">
+    <p><strong>Page:</strong> {{tableParams.page()}}</p>
+    <p><strong>Count per page:</strong> {{tableParams.count()}}</p>
+
+    <table ng-table="tableParams" class="table">
+        <tr ng-repeat="todo in $data">
+            <td data-title="'Date'">{{todo.date}}</td>
+            <td data-title="'Tache'">{{todo.tache}}</td>
+        </tr>
+    </table>
+</div>
