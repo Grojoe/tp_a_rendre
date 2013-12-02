@@ -1,7 +1,7 @@
 var app = angular.module('main', ['ngTable']).
         controller('DemoCtrl', function($scope, ngTableParams,$http) {
             
-            $http({method: 'GET', url: 'http://localhost/ZendSkeletonApplication/public/todo/list'}).
+            $http({method: 'GET', url: '/ZendSkeletonApplication/public/todo/list'}).
                     success(function(data, status, headers, config) {
                         $scope.tableParams = new ngTableParams({
                             page: 1, // show first page

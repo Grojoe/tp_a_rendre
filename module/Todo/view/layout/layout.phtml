@@ -14,14 +14,17 @@
 
         <!-- Scripts -->
 
-        <script data-require="angular.js@*" data-semver="1.2.0-rc3-nonmin" src="http://localhost/ZendSkeletonApplication/public/js/angular.js"></script>
-        <script data-require="ng-table@*" data-semver="0.3.0" src="http://localhost/ZendSkeletonApplication/public/js/ng-table.js"></script>
+        <!--<script data-require="angular.js@*" data-semver="1.2.0-rc3-nonmin" src="http://localhost/ZendSkeletonApplication/public/js/angular.js"></script>-->
+        <!--<script data-require="ng-table@*" data-semver="0.3.0" src="http://localhost/ZendSkeletonApplication/public/js/ng-table.js"></script>-->
 
         <link data-require="ng-table@*" data-semver="0.3.0" rel="stylesheet" href="http://localhost/ZendSkeletonApplication/public/css/ng-table.css" />
         <link data-require="bootstrap-css@*" data-semver="3.0.0" rel="stylesheet" href="http://localhost/ZendSkeletonApplication/public/css/bootstrap.min.css" />
         <?php
-        echo $this->headScript()
-                ->prependFile($this->basePath() . '/js/script.js')
+        echo $this->headScript()->setAllowArbitraryAttributes(true)
+                ->appendFile($this->basePath() . '/js/angular.js', 'text/javascript', array('data-require' => 'angular.js@*', 'data-semver' => '1.2.0-rc3-nonmin'))
+                ->appendFile($this->basePath() . '/js/ng-table.js', 'text/javascript', array('data-require' => 'ng-table@*', 'data-semver' => '0.3.0'))
+                ->appendFile($this->basePath() . '/js/script.js')
+
 
         ;
         ?>
