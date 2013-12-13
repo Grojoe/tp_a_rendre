@@ -38,3 +38,22 @@ var app = angular.module('main', ['ngTable']).
 
         });
 
+function Ctrl($scope) {
+  $scope.list = [];
+  $scope.text = 'hello';
+  $scope.submit = function() {
+    if (this.text) {
+      this.list.push(this.text);
+      this.text = '';
+    }
+  };
+}
+
+app.value('$strapConfig', {
+  datepicker: {
+    language: 'fr',
+    format: 'M d, yyyy'
+  }
+});
+
+$('.datepicker').datepicker();
