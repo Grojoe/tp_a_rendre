@@ -1,6 +1,7 @@
-var app = angular.module('main', ['ngTable']).
-        controller('DemoCtrl', function($scope, ngTableParams,$http) {
-            
+var mod = angular.module('main', ['ngTable']);
+var app = mod.
+        controller('DemoCtrl', function($scope, ngTableParams, $http) {
+
             $http({method: 'GET', url: '/ZendSkeletonApplication/public/todo/list'}).
                     success(function(data, status, headers, config) {
                         $scope.tableParams = new ngTableParams({
@@ -18,42 +19,17 @@ var app = angular.module('main', ['ngTable']).
                         // or server returns response with an error status.
                     });
 
-//            var data = [{name: "Moroni", age: 50},
-//                {name: "Tiancum", age: 43},
-//                {name: "Jacob", age: 27},
-//                {name: "Nephi", age: 29},
-//                {name: "Enos", age: 34},
-//                {name: "Tiancum", age: 43},
-//                {name: "Jacob", age: 27},
-//                {name: "Nephi", age: 29},
-//                {name: "Enos", age: 34},
-//                {name: "Tiancum", age: 43},
-//                {name: "Jacob", age: 27},
-//                {name: "Nephi", age: 29},
-//                {name: "Enos", age: 34},
-//                {name: "Tiancum", age: 43},
-//                {name: "Jacob", age: 27},
-//                {name: "Nephi", age: 29},
-//                {name: "Enos", age: 34}];
 
         });
 
-function Ctrl($scope) {
-  $scope.list = [];
-  $scope.text = 'hello';
-  $scope.submit = function() {
-    if (this.text) {
-      this.list.push(this.text);
-      this.text = '';
-    }
-  };
-}
-
-app.value('$strapConfig', {
-  datepicker: {
-    language: 'fr',
-    format: 'M d, yyyy'
-  }
+mod.controller("newTodoCtrl", function($scope, $http, $location) {
+    $scope.tache = null;
+    $scope.tache_date = null;
+    $scope.createTodo = function() {
+        var data = {tache: $scope.tache, data_tache: $scope.tache_date};
+        $http.post('/ZendSkeletonApplication/public/todo/add', data).success(function() {
+            alert("todo added");
+//            $location.path('/ZendSkeletonApplication/public/todo/index');
+        });
+    };
 });
-
-$('.datepicker').datepicker();

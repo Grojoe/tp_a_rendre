@@ -4,7 +4,7 @@ namespace Todo\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Json\Json;
-use Zend\Db\ResultSet\ResultSet;
+use Todo\Model\Todo;
 
 class TodoController extends AbstractActionController {
 
@@ -23,25 +23,35 @@ class TodoController extends AbstractActionController {
     }
 
     public function listAction() {
-//        $data = array(array("date" => "23/12/2013", "tache" => "congé"), array("date" => "21/12/2013", "tache" => "congé"), array("date" => "21/12/2013", "tache" => "congé"), array("date" => "21/12/2013", "tache" => "congé"));
         try {
             $result = $this->getTodoTable()->fetchAll();
             $data = array();
-            foreach ($result as $row)
+            foreach ($result as $row) {
                 array_push($data, $row);
-
-
+            }
             echo Json::encode($data);
             exit();
         } catch (\Exception $e) {
-            echo "Récupère exception: " . get_class($e) . "\n";
-            echo "Message: " . $e->getMessage() . "\n";
+            echo "Récupère exception: " . get_class($e) . "\n" + "Message: " . $e->getMessage() . "\n";
             exit();
         }
     }
 
     public function addAction() {
-        
+        try {
+            $request = $this->getRequest();
+
+            if ($request->isPost()) {
+                $data = $request->getContent();
+                $data_dec = Json::decode($data);
+                $todo = new Todo();
+                $todo->exchangeArray(get_object_vars($data_dec));
+                $this->getTodoTable()->saveTodo($todo);
+            }
+        } catch (\Exception $e) {
+            echo "Récupère exception: " . get_class($e) . "\n" + "Message: " . $e->getMessage() . "\n";
+            exit();
+        }
     }
 
     public function editAction() {
