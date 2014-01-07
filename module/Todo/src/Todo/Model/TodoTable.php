@@ -4,7 +4,6 @@ namespace Todo\Model;
 
 use Zend\Db\TableGateway\TableGateway;
 
-
 /**
  * Description of TodoTable
  *
@@ -34,7 +33,7 @@ class TodoTable {
     }
 
     public function saveTodo(Todo $todo) {
-        $data = array('tache' => $todo->tache);//, 'data_tache' => $todo->date_tache,);
+        $data = array('tache' => $todo->tache, 'data_tache' => $todo->date_tache,);
         $id = (int) $todo->id;
         if ($id == 0) {
             $this->tableGateway->insert($data);
