@@ -55,11 +55,27 @@ class TodoController extends AbstractActionController {
     }
 
     public function editAction() {
-        
+          try {
+            $request = $this->getRequest();
+              $id = (int) $this->params()->fromRoute("id", 0);
+            if ($request->isPost()) {
+                $data = $request->getContent();
+                $data_dec = Json::decode($data);
+                $todo = new Todo();
+                $todo->exchangeArray(get_object_vars($data_dec));
+                $todo->id=$id;
+                $this->getTodoTable()->saveTodo($todo);
+            }
+        } catch (\Exception $e) {
+            echo "Récupère exception: " . get_class($e) . "\n" + "Message: " . $e->getMessage() . "\n";
+            exit();
+        }
     }
 
     public function deleteAction() {
-        
+    $id = (int) $this->params()->fromRoute("id", 0);
+                $this->getTodoTable()->deleteTodo($id);
+              header('Location:../todo/index');
     }
 
 }

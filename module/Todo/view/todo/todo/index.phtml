@@ -7,6 +7,9 @@
         <tr ng-repeat="todo in $data">
             <td data-title="'Date'">{{todo.date_tache}}</td>
             <td data-title="'Tache'">{{todo.tache}}</td>
+            <td data-title="'Modifier'"><a href="edit/{{todo.id}}">Modifier</a></td>
+            <td data-title="'Supprimer'"><a href="delete/{{todo.id}}">supprimer</a></td>
         </tr>
     </table>
+    <h2><a href="../todo/add"> Ajouter une tache</a></h2><br/>
 </div>
